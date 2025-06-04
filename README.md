@@ -4,11 +4,29 @@
 
 ---
 
+## 🎯 문제 정의
+
+폐렴은 조기 진단이 중요한 질환으로, X-ray 영상 기반 분석이 많이 활용되고 있습니다. 본 프로젝트는 비교적 경량한 모델(U-Net + Random Forest)을 기반으로, 이미지 전처리 중심의 분석으로 폐렴 여부를 예측하는 시스템을 설계하는 것을 목표로 합니다.
+
+이 시스템은 복잡한 엔드투엔드 딥러닝 대신, 전처리 및 시각적 특징 추출을 통한 명확한 분류 기준 확보에 중점을 둡니다.
+
+---
+
 ## 📌 프로젝트 개요
 
 본 프로젝트는 Chest X-ray 이미지에서 폐 영역을 분할(U-Net 기반), 해당 영역의 시각적 특징(밝기, 윤곽선, 질감 등)을 추출한 후, 경량 분류기(Random Forest)를 통해 폐렴 여부를 예측하는 전처리 중심의 진단 보조 시스템입니다.
 
 * 본 프로젝트는 [Kaggle의 U-Net Lung Segmentation Weights](https://www.kaggle.com/datasets/farhanhaikhan/unet-lung-segmentation-weights-for-chest-x-rays)에서 제공된 사전학습된 가중치를 사용하였습니다.
+
+---
+
+## 🛠 사용 기술
+
+* Python 3, TensorFlow 2, OpenCV, scikit-learn
+* U-Net 기반 폐 분할 모델
+* CLAHE, Canny Edge, GLCM, LBP 등 전통적 컴퓨터 비전 기법
+* Random Forest 기반 경량 분류기
+* Tkinter 기반 GUI 예측 인터페이스
 
 ---
 
@@ -136,6 +154,14 @@ pip install numpy pandas opencv-python scikit-learn scikit-image matplotlib seab
 * 개인이 가진 X-ray 이미지로 간편하게 폐렴 여부를 확인해볼 수 있음
 * 대형 모델 없이도 의미 있는 진단 성능을 얻을 수 있어 저사양 환경에 적합함
 * 의료 도우미 챗봇, 모바일 진단 앱 등 다양한 곳에 내장 가능
+
+---
+
+## 🔮 향후 개선 방향
+
+* 현재는 단일 X-ray 이미지 기반 분석 → 향후 시간 순 영상 혹은 CT 확장 가능
+* 폐 외 다른 흉부 구조 반영 또는 다중 질환 분류 가능성
+* 모바일 혹은 웹 기반 진단 도구로 확장 고려
 
 ---
 
