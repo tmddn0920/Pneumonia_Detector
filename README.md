@@ -68,6 +68,22 @@ Pneumonia_Detector/
 * **GLCM (Gray Level Co-occurrence Matrix)** 기반 질감 분석 (contrast, homogeneity)
 * **LBP (Local Binary Pattern)** 기반 좌우 질감 비대칭성 및 entropy 차이 계산
 
+#### 🎯 폐렴 진단에 유의미한 이유
+
+추출된 특징들은 실제 의료 영상 판독 기준과 연관성이 높은 시각적 지표로 구성되어 있습니다. 각 특징이 폐렴 진단에 기여하는 바는 다음과 같습니다:
+
+| 특징명                        | 설명 및 폐렴 관련성 |
+|-----------------------------|--------------------|
+| **mean_intensity**, **std_intensity** | 폐렴 부위는 삼출물, 염증 등으로 인해 밝기가 증가하거나 분산이 커지는 경향이 있음 |
+| **area_ratio**              | 폐렴 시 마스크화된 폐 영역이 축소되거나 흐릿해질 수 있어, 전체 대비 비율이 감소함 |
+| **edge_density**            | 폐렴은 폐 내부 구조를 불명확하게 만들어 윤곽선(엣지) 밀도가 낮아질 수 있음 |
+| **glcm_contrast**, **glcm_homogeneity** | GLCM 질감 분석은 조직의 패턴 변화와 불균일성을 측정하며, 폐렴은 높은 contrast와 낮은 homogeneity를 보이는 경향이 있음 |
+| **brightness_asymmetry**    | 폐렴은 좌/우 폐 중 한쪽에 국한되기도 하여, 밝기의 비대칭성이 증가할 수 있음 |
+| **edge_density_asymmetry**  | 윤곽선 밀도도 한쪽 폐에 병변이 있을 경우 비대칭적으로 나타날 수 있음 |
+| **lbp_entropy_asymmetry**   | 폐 조직의 미세 질감 패턴(LBP)의 엔트로피 차이는 질병에 따른 구조 변화로 인해 증가할 수 있음 |
+
+> 이러한 시각적 특징들은 기존의 딥러닝 기반 픽셀 패턴 학습 방식 대신, **직관적이고 해석 가능한 방식**으로 폐렴 여부를 판별하는 데 기여합니다.
+
 ### 3. 폐렴 분류 (Classification)
 
 * 특징 기반의 **Random Forest** 이진 분류기 학습
